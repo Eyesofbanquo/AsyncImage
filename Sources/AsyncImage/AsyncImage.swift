@@ -15,6 +15,7 @@ public struct AsyncImage<Placeholder: View>: View {
   public init(url: URL, placeholder: Placeholder? = nil, cache: ImageCacheable? = nil, configuration: @escaping (Image) -> Image = { $0 }) {
     loader = ImageLoader(url: url, cache: cache) // needs to be inverted
     self.placeholder = placeholder
+    self.configuration = configuration
   }
   
   public var body: some View {

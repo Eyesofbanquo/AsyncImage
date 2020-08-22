@@ -11,7 +11,7 @@ import Foundation
 import SwiftUI
 
 public protocol ImageCacheable {
-  public subscript(_ url: URL) -> UIImage? { get set }
+  subscript(_ url: URL) -> UIImage? { get set }
 }
 
 public struct ImageCacheKey: EnvironmentKey {

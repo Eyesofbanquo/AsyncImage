@@ -10,7 +10,9 @@ public struct AsyncImage<Placeholder: View>: View {
   @ObservedObject private var loader: ImageLoader //needs to be inverted
   private let placeholder: Placeholder?
   
-  public init(url: URL, placeholder: Placeholder? = nil, cache: ImageCacheable? = nil) {
+  private let configuration: (Image) -> Image
+  
+  public init(url: URL, placeholder: Placeholder? = nil, cache: ImageCacheable? = nil, configuration: @escaping (Image) -> Image = { $0 }) {
     loader = ImageLoader(url: url, cache: cache) // needs to be inverted
     self.placeholder = placeholder
   }
@@ -24,8 +26,7 @@ public struct AsyncImage<Placeholder: View>: View {
   private var image: some View {
     Group {
       if loader.image != nil {
-        Image(uiImage: loader.image!)
-          .resizable()
+        configuration(Image(uiImage: loader.image!))
       } else {
         placeholder
       }

@@ -1,7 +1,10 @@
 
-#if canImport(SwiftUI) && canImport(Combine)
+#if canImport(SwiftUI) && canImport(Combine) && canImport(UIKit)
 import Foundation
 import SwiftUI
+import Combine
+import UIKit
+
 
 public struct AsyncImage<Placeholder: View>: View {
   @ObservedObject private var loader: ImageLoader //needs to be inverted
